@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import cartImage from "../media/cart-outline.svg"
 
 function NavBar({totalCartItems}){
 
@@ -7,7 +8,7 @@ function NavBar({totalCartItems}){
                 <div className="nav-menu">
                     <Link to="/" className="nav-link">Home</Link>
                     <Link to="/Store/" className="nav-link">Store</Link>
-                    <Link to="/Cart/" className="nav-link image-container"><img className="icon" src="../media/cart-outline.svg" />({totalCartItems})</Link>
+                    <Link to="/Cart/" className="nav-link image-container"><img className="icon" src={cartImage} />({totalCartItems})</Link>
                 </div>
             </div>)
 }
