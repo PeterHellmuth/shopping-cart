@@ -3,15 +3,17 @@ import QtyButtons from "./QtyButtons.jsx";
 
 function Store(){
 
-    const [items, sortedCart, removeFromCart, addToCart] = useOutletContext();
-
+    const [items, cartItems, removeFromCart, addToCart, setQty] = useOutletContext();
 
     function inCart(name){
-        for(let i = 0; i < sortedCart.length; i++){
-            if(sortedCart[i].title===name){
-                return true;
+        if(cartItems){
+            for(let i = 0; i < cartItems.length; i++){
+                if(cartItems[i].title===name){
+                    return true;
+                }
             }
         }
+
         return false;
     }
 
@@ -26,7 +28,8 @@ function Store(){
                             <img className="item-image" src={item.image}></img>
                             <div className="item-footer">
                                 <span className="price-text">${item.price}</span>
-                                {inCart(item.title) ? (<QtyButtons name={item.title} sortedCart={sortedCart} removeFromCart={removeFromCart} addToCart={addToCart} />) : (<button className="add-to-cart-button" onClick={()=>addToCart(item.title)}>Add to Cart</button>)}
+                                {inCart(item.title) ? (<QtyButtons name={item.title} cartItems={cartItems} removeFromCart={removeFromCart} addToCart={addToCart} setQty={setQty}/>) : 
+                                (<button className="add-to-cart-button" onClick={()=>addToCart(item.title)}>Add to Cart</button>)}
                             </div>
 
                         </div>)

@@ -13,6 +13,11 @@ h1, p{
   padding: 10px;
 }
 
+.qty-input{
+  width: 30px;
+  padding: 0px;
+  margin: 0px;
+}
 .item-footer{
   display: flex;
   justify-content: space-between;
@@ -20,7 +25,13 @@ h1, p{
 
 .qty-section{
   display: flex;
-  gap: 10px;
+  justify-content: end;
+  gap: 5px;
+}
+
+.qty-input-container{
+  display: flex;
+  align-items: center;
 }
 .nav-menu{
   display: flex;
@@ -83,7 +94,7 @@ h1, p{
   border-radius: 20px;
   padding: 10px;
   background-color: white;
-  gap: 5px;
+  gap: 10px;
   
 }
 .price-text{
@@ -91,8 +102,8 @@ h1, p{
 }
 
 .item-image{
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 150px;
+  max-height: 150px;
 }
 
 .add-to-cart-button{

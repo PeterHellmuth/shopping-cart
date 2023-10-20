@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 
 function App() {
   const [items, setItems] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(null);
 
   useEffect(()=>{ 
       fetch('https://fakestoreapi.com/products/')
@@ -20,54 +20,87 @@ function App() {
 
 
   function addToCart(name){
-    let newCartItems = cartItems.map((item) => item);
-    for(let i=0; i < items.length; i++){
-      if(items[i].title === name){
-        newCartItems.push(items[i]);
+    let exists = false;
+    let newCartItems = [];
+    if(cartItems){
+      newCartItems = cartItems.map((item) => item);
+      for(let i=0; i < newCartItems.length; i++){
+        if(newCartItems[i].title === name){
+          newCartItems[i].quantity += 1;
+          exists = true;
+          break;
+        }
       }
     }
+
+    if(!exists){
+      let newItem = findItem(name);
+      newCartItems.push({title: newItem.title, price: newItem.price, image: newItem.image, quantity: 1});
+    }
+
     setCartItems(newCartItems);
   }
 
   function removeFromCart(name){
+
+    let newCartItems = [];
+    if(cartItems){
+      newCartItems = cartItems.map((item) => item);
+      for(let i=0; i < newCartItems.length; i++){
+        if(newCartItems[i].title === name){
+          newCartItems[i].quantity -= 1;
+          if(newCartItems[i].quantity <= 0){
+            newCartItems.splice(i,1);
+          }
+          break;
+        }
+      }
+    }
+
+    setCartItems(newCartItems);
+  }
+
+  function findItem(name){
+    for(let i = 0; i < items.length;i++){
+      if(items[i].title === name){
+        return items[i];
+      }
+    }
+  }
+
+  function setQty(name, qty){
     let newCartItems = cartItems.map((item) => item);
     for(let i = 0; i < newCartItems.length; i++){
       if(newCartItems[i].title === name){
-        newCartItems.splice(i, 1);
+        if(qty > 0){
+          newCartItems[i].quantity = Number(qty);
+        } else{
+          newCartItems.splice(i, 1);
+        }
         break;
       }
     }
     setCartItems(newCartItems);
   }
 
-  let sortedCart = [];
-  for(let i = 0; i < cartItems.length; i++){
-      let exists = false;
-      let existingIndex = null;
-      for(let j = 0; j< sortedCart.length; j++){
-          if(sortedCart[j].title === cartItems[i].title){
-              exists = true;
-              existingIndex = j;
 
-              break;
-          }
-      }
-   
-      if(exists){
-          sortedCart[existingIndex].quantity += 1;
-      } else{
-          sortedCart.push({title: cartItems[i].title, price: cartItems[i].price, image: cartItems[i].image, quantity: 1});
-      }
+  let totalCartItems = 0;
+  if(cartItems){
+    for(let i = 0; i< cartItems.length;i++){
+      totalCartItems += Number(cartItems[i].quantity);
+    }
   }
+
 
 
 
   return (
     <>
-      <NavBar cartItems={cartItems}/>
-      <Outlet context={[items, sortedCart, removeFromCart, addToCart]}/>
+      <NavBar totalCartItems={totalCartItems}/>
+      <Outlet context={[items, cartItems, removeFromCart, addToCart, setQty]}/>
     </>
   )
 }
+
 
 export default App
