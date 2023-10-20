@@ -66,6 +66,8 @@ h1, p{
 
 .container{
   display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .nav-link{
