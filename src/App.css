@@ -24,6 +24,7 @@ h1, p{
 }
 .item-footer{
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -200,18 +201,26 @@ h1, p{
 h4{
   font-size: 12px;
 }
+
 h3{
   font-size: 18px;
 }
+.store-items{
+  grid-template-columns:repeat( auto-fit, minmax(150px, 1fr) );
+}
+.qty-section{
+  font-size: 12px;
+}
 .price-text{
-  font-size: 18px;
+  font-size: 14px;
 }
 .cart-item-image{
   width: 50px;
 }
+
 .price-and-qty{
   gap: 5px;
-  font-size: 14px;
+  font-size: 12px;
 }
 .store-page{padding: 3px;}
 }
