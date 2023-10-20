@@ -16,7 +16,7 @@ function QtyButtons({ name, cartItems, addToCart, removeFromCart, setQty }) {
       
       <button onClick={() => removeFromCart(item.title)}>-</button>
       <span className="qty-input-container">
-        Qty: <input className="qty-input" onChange={(e) => setQty(item.title, e.target.value)} type="text" id={item.title} value={item.quantity}/>
+        Qty: <input className="qty-input" onChange={(e) => setQty(item.title, e.target.value)} type="text" maxLength ={4} id={item.title} value={item.quantity}/>
       </span>
       <button onClick={() => addToCart(item.title)}>+</button>
     </div>) : ""

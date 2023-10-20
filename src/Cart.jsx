@@ -1,15 +1,24 @@
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, Link } from "react-router-dom";
 import QtyButtons from "./QtyButtons.jsx";
 
 function Cart(){
     const [items, cartItems, removeFromCart, addToCart, setQty] = useOutletContext();
+    
+    let isCartEmpty = true;
 
-    let totalPrice = 0;
-    for(let i = 0; i < cartItems.length; i++){
-        totalPrice += cartItems[i].price*cartItems[i].quantity;
+    if(cartItems){
+        if(cartItems.length > 0){
+            isCartEmpty = false;
+        }
     }
 
-    totalPrice = Math.round(totalPrice * 100) / 100
+
+    if(!isCartEmpty){
+        let totalPrice = 0;
+        for(let i = 0; i < cartItems.length; i++){
+            totalPrice += cartItems[i].price*cartItems[i].quantity;
+        }
+        totalPrice = Math.round(totalPrice * 100) / 100
 
     return  (<>
     <h1>Your cart:</h1>
@@ -31,11 +40,18 @@ function Cart(){
         </div>
         <div className="total-checkout">
             <span>Cart Total: ${totalPrice}</span>
-            <button onClick={()=>alert("This isn't a real store.")}>Checkout</button>
+            <button onClick={()=>alert("This isn't a real store.")} className="checkout-button">Checkout</button>
         </div>
 
     </div>
     </>)
+    } else{
+        return <div className="home-page"><h1>Your cart is empty!</h1>
+        <Link to="/store/"><button className="store-button">Go pick some stuff!</button></Link></div>
+    }
+
+
+
 }
 
 export default Cart
