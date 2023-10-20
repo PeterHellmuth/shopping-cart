@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 
-
 function NavBar({totalCartItems}){
 
     return  (<div className="nav-bar">
@@ -8,7 +7,7 @@ function NavBar({totalCartItems}){
                 <div className="nav-menu">
                     <Link to="/" className="nav-link">Home</Link>
                     <Link to="/Store/" className="nav-link">Store</Link>
-                    <Link to="/Cart/" className="nav-link">Cart({totalCartItems})</Link>
+                    <Link to="/Cart/" className="nav-link image-container"><img className="icon" src="../media/cart-outline.svg" />({totalCartItems})</Link>
                 </div>
             </div>)
 }

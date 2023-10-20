@@ -42,6 +42,10 @@ h1, p{
   gap: 10px;
 }
 
+.icon{
+  width: 30px;
+  height: auto;
+}
 .price-and-qty{
   display: flex;
   gap: 10px;
@@ -159,6 +163,9 @@ h1, p{
 
 }
 
+.image-container{
+  display: flex;
+}
 .store-button{
   font-size: 50px;
   background-color: white;
