@@ -4,9 +4,11 @@ import { Outlet } from 'react-router-dom'
 import NavBar from './NavBar'
 import { useEffect, useState } from 'react'
 
+
 function App() {
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState(null);
+
 
   useEffect(()=>{ 
       fetch('https://fakestoreapi.com/products/')

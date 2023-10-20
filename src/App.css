@@ -49,6 +49,7 @@ h1, p{
 .price-and-qty{
   display: flex;
   gap: 10px;
+  font-size: 18px;
 }
 
 
@@ -193,6 +194,24 @@ h1, p{
   font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-size: 24px;
 }
-
+.store-button{
+  font-size: 20px;
+}
+h4{
+  font-size: 12px;
+}
+h3{
+  font-size: 18px;
+}
+.price-text{
+  font-size: 18px;
+}
+.cart-item-image{
+  width: 50px;
+}
+.price-and-qty{
+  gap: 5px;
+  font-size: 14px;
+}
 .store-page{padding: 3px;}
 }
